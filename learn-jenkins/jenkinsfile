@@ -1,0 +1,16 @@
+pipeline {
+  agent any
+  stages {
+    stage('Info') {
+      steps {
+        script {
+          if (env.CHANGE_ID) {
+            echo "Triggered by PR #${env.CHANGE_ID}"
+          } else {
+            echo "Triggered by push/merge to branch: ${env.BRANCH_NAME}"
+          }
+        }
+      }
+    }
+  }
+}
